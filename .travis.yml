@@ -52,7 +52,7 @@ addons:
   apt:
     packages:
       - net-tools
-
+      - curl
 # Get debug output
 before_install:
   - python --version
