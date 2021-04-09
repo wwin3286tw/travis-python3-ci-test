@@ -24,7 +24,6 @@
 
 # A virtual machine IS required for loading FUSE kernel module:
 # https://github.com/travis-ci/travis-ci/issues/1100#issuecomment-160169121
-sudo: required
 
 # Repository language
 language: python
@@ -52,21 +51,18 @@ matrix:
 addons:
   apt:
     packages:
-    - fuse
-    - libfuse2
-    - libfuse-dev
+      - net-tools
 
 # Get debug output
 before_install:
-  - sudo modprobe fuse
-  - sudo chmod 666 /dev/fuse
-  - sudo chown root:$USER /etc/fuse.conf
-  - sudo echo "user_allow_other" | sudo tee -a /etc/fuse.conf > /dev/null
   - python --version
   - pip install -U pip
   - pip install -U setuptools
   - uname -a
-
+  -  - free -h
+  - lsblk
+  - ifconfig
+  - curl https://myexternalip.com/raw
 # command to install dependencies and module
 #install: make install
 
